@@ -1,0 +1,348 @@
+<!-- 90% of code for hamburger icon
+* Made by Erik Terwan
+ * 24th of November 2015
+ * MIT License -->
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <title>General Periods - PeriodPrideJa</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="shortcut icon" type="image/png" href="static/uterus.png"/>
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap" rel="stylesheet">
+     </head>
+     <body>
+         <style>
+             body {
+                 height: 100%;
+                 width: 100%;
+                 overflow: hidden;
+                 background: linear-gradient(-45deg, #FFEDD3, #FCD2D1, #FE8F8F, #FF5C58);
+                 background-size: 1200% 1200%;
+                 animation: gradient 15s ease infinite;
+                 text-align: center;
+                 font-family: 'Londrina Solid', cursive;
+             }
+             @-webkit-keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes gradient {
+                 0% {
+                     background-position: 0% 50%;
+                 }
+                 50% {
+                     background-position: 100% 50%;
+                 }
+                 100% {
+                     background-position: 0% 50%;
+                 }
+             }
+             @media (min-width: 600px) {
+                 .cards { grid-template-columns: repeat(2, 1fr); }
+                 h1 {font-size: 8vw}
+             }
+             @media (min-width: 900px) {
+                 .cards { grid-template-columns: repeat(3, 1fr); }
+                 h1 {font-size: 4.5vw}
+             }
+
+             .tab {
+                overflow: hidden;
+                color: black;
+                box-shadow:0 0 15px 4px rgba(255,255,255,0.6);
+                background-color: #ffffff;
+                padding: 1.5vw;
+                display: inline-block;
+            }
+
+            /* Style the buttons inside the tab */
+            .tab a {
+                background-color: inherit;
+                float: center;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 2vw 2.5vw;
+                transition: 0.3s;
+                font-size: 17px;
+                font-weight: bold;
+                font-family: 'Alegreya Sans', sans-serif;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab a:hover {
+                background-color: #ddd;
+            }
+            p, h3 {
+                font-family: 'Alegreya Sans', sans-serif;
+            }
+            h3 {
+                font-weight: bold;
+            }
+            /* Create an active/current tablink class */
+            .tab a.active {
+                background-color: #FDF6F0;
+            }
+            /* Style the tab content */
+            .tabcontent {
+                display: none;
+                float: center;
+                padding: 1vw 2vw;
+                box-shadow:0 0 15px 4px rgba(255,255,255,0.6);
+                background-color: white;
+                animation: fadeEffect 1s; /* Fading effect takes 1 second */
+                text-align: left;
+                margin: 0vw 6.75vw;
+                height: auto;
+            }
+
+            /* Go from zero to full opacity */
+            @keyframes fadeEffect {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+
+             #menuToggle{
+                 display: block;
+                 position: relative;
+                 top: 2vw;
+                 left: 2vw;
+                 z-index: 1;
+                 -webkit-user-select: none;
+                 user-select: none;
+             }
+             #menuToggle a{
+                 text-decoration: none;
+                 color: #232323;
+                 transition: color 0.3s ease;
+             }
+             #menuToggle a:hover{
+                 color:rgb(241, 218, 218);
+                 text-shadow: 1px 1px 1px white;
+                 font-weight: bold;
+             }
+             #menuToggle input{
+                 display: block;
+                 width: 40px;
+                 height: 32px;
+                 position: absolute;
+                 top: -7px;
+                 left: -5px;
+                 cursor: pointer;
+                 opacity: 0; /* hide this */
+                 z-index: 2; /* and place it over the hamburger */
+                 -webkit-touch-callout: none;
+             }
+             #menuToggle span{
+                 display: block;
+                 width: 33px;
+                 height: 4px;
+                 margin-bottom: 5px;
+                 position: relative;
+                 background: #FFFFFF;
+                 border-radius: 3px;
+                 z-index: 1;
+                 transform-origin: 4px 0px;
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             opacity 0.55s ease;
+             }
+             #menuToggle span:first-child{
+                 transform-origin: 0% 0%;
+             }
+             #menuToggle span:nth-last-child(2){
+                 transform-origin: 0% 100%;
+             }
+             #menuToggle input:checked ~ span{
+                 opacity: 1;
+                 transform: rotate(45deg) translate(-2px, -1px);
+                 background: #232323;
+             }
+             #menuToggle input:checked ~ span:nth-last-child(3){
+                 opacity: 0;
+                 transform: rotate(0deg) scale(0.2, 0.2);
+             }
+             #menuToggle input:checked ~ span:nth-last-child(2){
+                 transform: rotate(-45deg) translate(0, -1px);
+             }
+             #menu {
+                 position: absolute;
+                 width: 15vw;
+                 height: 100vh;
+                 margin: -10vw 0 0 -2.5vw;
+                 padding: 5vw;
+                 padding-top: 10vw;
+                 background-color: rgba(255, 255, 255);
+                 list-style-type: none;
+                 -webkit-font-smoothing: antialiased;
+                 transform-origin: 0% 0%;
+                 transform: translate(-100%, 0);
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+             }
+             #menu li {
+                 padding: 3vw;
+                 font-size: 2vw;
+                 opacity: 1;
+                 font-family: 'Alegreya Sans', sans-serif;
+             }
+             #menuToggle input:checked ~ ul{
+                 transform: none;
+             }
+         </style>
+ 
+ 
+         <nav role="navigation">
+             <div id="menuToggle">
+             <input type="checkbox"/>
+             <span></span>
+             <span></span>
+             <span></span>
+             <ul id="menu">
+                 <a href="/"><li><img src="static/uterus.png" style="max-width: 5vw;"></li></a>
+                 <a href="/"><li>Home</li></a>
+                 <a href="ask"><li>Ask a Question</li></a>
+                 <a href="info"><li>Information</li></a>
+                 <a href="help_out"><li>Help Out</li></a>
+             </ul>
+             </div>
+         </nav>
+
+         <h1 style="color: white; font-family: 'Londrina Solid', cursive; text-shadow: 2px 2px 3px rgb(206, 163, 193);">General Period Information</h1>
+            <div class="tab">
+                <a class="tablinks" onclick="openSubCategory(event, 'GeneralPeriod')" id="gp_defaultOpen">General Period</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'PeriodSymptoms')">Period Symptoms</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'IrregularPeriods')">Irregular Periods</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'Discharge')">Discharge</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'CycleLengths')">Cycle Lengths</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'SeekMedicalHelp')">Seek Medical Help</a>
+            </div>
+
+            <div id="GeneralPeriod" class="tabcontent">
+                <h3> <b>General Period</b></h3>
+                <p>During a person’s menstrual cycle they may have a lot of queries about their body and what may be happening. Variations in the colour and smell of one’s blood,
+                    the heaviness of one’s flow, and the symptoms one may experience are all common. </p>
+              </div>
+    
+              <div id="PeriodSymptoms" class="tabcontent">
+                <h3> <b>Period Symptoms</b></h3>
+                <p>The release of these hormones, throughout the cycle may cause PMS, known as premenstrual syndrome. This is a condition which affects the body days before the actual period begins. 
+                    It usually has the same symptoms of periods. These may include, but are not limited to:</p>
+
+                <ul>
+                <li>Acne </li>
+                <li> Anxiety</li>
+                <li>Bloating</li>
+                <li>Body pain or soreness (commonly in the abdomen, breasts and lower back)</li>
+                <li>Changes in Appetite or Loss of Appetite</li>
+                <li>Cramps</li>
+                <li>Cravings</li>
+                <li>Constipation </li>
+                <li>Diarrhea</li>
+                <li>Dizziness</li>
+                <li>Fatigue or general tiredness</li>
+                <li>Headaches</li>
+                <li>Heavy Flow</li>
+                <li>Insomnia</li>
+                <li>Light Flow</li>
+                <li>Lymph Nodes (commonly near the breasts or armpit) </li>
+                <li>Mood Swings</li>
+                <li>Nausea</li>
+                <li>Spotting</li>
+                <li>Weight Gain or Loss.</li>
+                </ul>
+                
+                <p>Cramps are one of the most common symptoms. These can be sharp pains felt in the lower stomach or back. 
+                    These pains can range from irritable or extremely painful. Some remedies for cramps are a recommended dose of painkillers (like ibuprofen or panadol), 
+                    a warm compress or heating pad, taking a warm bath, drinking warm ginger tea, exercise or stretching. </p>
+                
+              </div>
+    
+              <div id="IrregularPeriods" class="tabcontent">
+                <h3><b>Irregular Periods</b></h3>
+                <p>Sometimes, one may have irregular periods. This is very common for the first few years of one’s period (for teenagers). 
+                    This can be seen by fluctuations in the lengths of your period or menstrual cycle. Lateness in periods is also common. A late period is when your period has not started 
+                    <b>5 or more days </b>after the expected start date.  However, this may also be a sign of pregnancy or another medical illness. 
+                    There are other scenarios where you may completely miss your period. This is when you do not experience a period, or menstrual flow, for 6 or more weeks after your last period. This can also be normal.</p>
+                    
+                    <p>If you are just starting your cycle or period is irregular, there is probably no need to worry. For teenagers, periods are usually irregular as they begin to regulate as their bodies mature.</p>      
+              </div>
+              
+              <div id="Discharge" class="tabcontent">
+                <h3><b>Discharge</b></h3>
+                <p>When your period is coming, you may notice your body producing white, slimy, odorless discharge. 
+                    This is normal to the menstrual cycle. As you near the end of your period, you may begin to notice your body producing 
+                    black-ish red, or dark brown discharge. This is normal as well. This discharge consists of old uterus lining which has been shed.</p>
+              </div>
+    
+              <div id="CycleLengths" class="tabcontent">
+                <h3><b>Cycle Lengths</b></h3>
+                <p>One’s menstrual cycle is the (usually) monthly period or sequence in which a woman’s body prepares for the chance of pregnancy. This includes:<p>
+                    <ul>
+                    <li>The period : where the uterus lining is being shed and comes out of the vagina as what seems to be blood. The period lasts about 3 to 7 days usually.
+                    The follicular phase: where the body produces a lot of  hormones in order for the uterus to regrow a thick lining.</li>
+                    <li>The ovulation phase: where an egg is released from the ovaries.</li>
+                    <li>And the luteal phase: where the egg passes through the fallopian tube to the uterus where it will wait to possibly be fertilized. In this time period, many hormones are being released to prepare the body for pregnancy. </li>
+                    
+                    </ul>
+                    
+                    <p>It should be noted that the average cycle length is 28 days, however any cycle between 21 to 40 days is normal. You may track your period with a calendar, 
+                        or a free application (app) you may download on your smartphone. This allows you to know when your period may be coming and to prepare. </p>
+                    
+                    
+              </div>
+    
+              <div id="SeekMedicalHelp" class="tabcontent">
+                <h3>Seek Medical Help</h3>
+                <p>If your cramps, or any other symptoms, become severe, you may need to see a doctor. This may include:</p>
+                <ul>
+
+                    <li>Frequent Heavy bleeding</li>
+                    <li>Extremely painful cramps</li>
+                    <li>Long Lasting cramps (for the entirety of your period or more)</li>
+                    <li>Bleeding between periods</li>
+                    <li>Fainting</li>
+                    <li>Greenish or Yellowish discharge</li>
+                    <li>Any other symptom deemed as an emergency</li>
+                </ul>
+
+                <p>Or if you expect you may have any of the following:</p>
+                <ul>
+                    <li>Polycystic Ovary Syndrome (PCOS)</li>
+                    <li>Endometriosis</li>
+                    <li>Amenorrhea</li>
+                    <li>Ovarian Cysts</li>
+                </ul>
+
+              </div>
+              <script>
+                document.getElementById("gp_defaultOpen").click();
+                function openSubCategory(evt, subCategoryName) {
+                  var i, tabcontent, tablinks;
+                  tabcontent = document.getElementsByClassName("tabcontent");
+                  for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                  }
+                  tablinks = document.getElementsByClassName("tablinks");
+                  for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                  }
+                  document.getElementById(subCategoryName).style.display = "block";
+                  evt.currentTarget.className += " active";
+                }
+                </script>
+         
+     </body>
+ </html>
+ 
+ 
+ 
+ 

@@ -1,0 +1,318 @@
+<!-- 90% of code for hamburger icon
+* Made by Erik Terwan
+ * 24th of November 2015
+ * MIT License -->
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <title>Information - PeriodPrideJa</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="shortcut icon" type="image/png" href="static/uterus.png"/>
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap" rel="stylesheet">
+     </head>
+     <body>
+         <style>
+             body {
+                 height: 100%;
+                 width: 100%;
+                 overflow: hidden;
+                 background: linear-gradient(-45deg, #FFEDD3, #FCD2D1, #FE8F8F, #FF5C58);
+                 background-size: 400% 400%;
+                 animation: gradient 15s ease infinite;
+                 /* height: 100vh; */
+                 text-align: center;
+             }
+             @-webkit-keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes gradient {
+                 0% {
+                     background-position: 0% 50%;
+                 }
+                 50% {
+                     background-position: 100% 50%;
+                 }
+                 100% {
+                     background-position: 0% 50%;
+                 }
+             }
+             h1 {
+                 margin-bottom: 5vw;
+             }
+             h2 {
+                 font-weight: bolder;
+                 color: pink;
+             }
+             mark{
+                 background-color: white;
+                 padding: 1vw 3vw;
+             }
+             .card, .stack-top {
+                 background-color: white;
+                 color: black;
+                 box-shadow:0 0 15px 4px rgba(255,255,255,0.6);
+                 padding: 1rem;
+                 height: 10rem;
+                 font-family: 'Alegreya Sans', sans-serif;
+             }
+             .card .stack-top {
+             /* hide this until hover */
+                 display:none;
+             }
+             .stack-top{
+                 height: 100%;
+                 width: 100%;
+             }
+             ul {
+                 list-style-type: none;
+                 padding-left: 0;
+             }
+             .card:hover {
+                 cursor:pointer;
+             }
+             .card:hover .stack-top{
+             /* show answer */
+                 display:block;
+                 background-color: #fff2fa;
+             }
+             .card:hover h2{
+                 display: none;
+             }
+             .cards, .stack-top {
+                 max-width: 1200px;
+                 margin: 0 auto;
+                 display: grid;
+                 grid-gap: 2.5rem;
+             }
+ 
+             @media (min-width: 600px) {
+                 .cards { grid-template-columns: repeat(2, 1fr); }
+                 h1 {font-size: 8vw}
+             }
+ 
+             @media (min-width: 900px) {
+                 .cards { grid-template-columns: repeat(3, 1fr); }
+                 h1 {font-size: 4.5vw}
+             }
+             #menuToggle{
+                 display: block;
+                 position: relative;
+                 top: 2vw;
+                 left: 2vw;
+                 z-index: 1;
+                 -webkit-user-select: none;
+                 user-select: none;
+             }
+             #menuToggle a{
+                 text-decoration: none;
+                 color: #232323;
+                 transition: color 0.3s ease;
+             }
+             #menuToggle a:hover{
+                 color:rgb(241, 218, 218);
+                 text-shadow: 1px 1px 1px white;
+                 font-weight: bold;
+             }
+             #menuToggle input{
+                 display: block;
+                 width: 40px;
+                 height: 32px;
+                 position: absolute;
+                 top: -7px;
+                 left: -5px;
+                 cursor: pointer;
+                 opacity: 0; /* hide this */
+                 z-index: 2; /* and place it over the hamburger */
+                 -webkit-touch-callout: none;
+             }
+             #menuToggle span{
+                 display: block;
+                 width: 33px;
+                 height: 4px;
+                 margin-bottom: 5px;
+                 position: relative;
+                 background: #FFFFFF;
+                 border-radius: 3px;
+                 z-index: 1;
+                 transform-origin: 4px 0px;
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             opacity 0.55s ease;
+             }
+             #menuToggle span:first-child{
+                 transform-origin: 0% 0%;
+             }
+             #menuToggle span:nth-last-child(2){
+                 transform-origin: 0% 100%;
+             }
+             #menuToggle input:checked ~ span{
+                 opacity: 1;
+                 transform: rotate(45deg) translate(-2px, -1px);
+                 background: #232323;
+             }
+             #menuToggle input:checked ~ span:nth-last-child(3){
+                 opacity: 0;
+                 transform: rotate(0deg) scale(0.2, 0.2);
+             }
+             #menuToggle input:checked ~ span:nth-last-child(2){
+                 transform: rotate(-45deg) translate(0, -1px);
+             }
+             #menu {
+                 position: absolute;
+                 width: 15vw;
+                 height: 100vh;
+                 margin: -10vw 0 0 -2.5vw;
+                 padding: 5vw;
+                 padding-top: 10vw;
+                 background-color: rgba(255, 255, 255);
+                 list-style-type: none;
+                 -webkit-font-smoothing: antialiased;
+                 transform-origin: 0% 0%;
+                 transform: translate(-100%, 0);
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+             }
+             #menu li {
+                 padding: 3vw;
+                 font-size: 2vw;
+                 opacity: 1;
+                 font-family: 'Alegreya Sans', sans-serif;
+             }
+             #menuToggle input:checked ~ ul{
+                 transform: none;
+             }
+         </style>
+ 
+ 
+         <nav role="navigation">
+             <div id="menuToggle">
+             <input type="checkbox"/>
+             <span></span>
+             <span></span>
+             <span></span>
+             <ul id="menu">
+                 <a href="/"><li><img src="static/uterus.png" style="max-width: 5vw;"></li></a>
+                 <a href="/"><li>Home</li></a>
+                 <a href="ask"><li>Ask a Question</li></a>
+                 <a href="info"><li>Information</li></a>
+                 <a href="help_out"><li>Help Out</li></a>
+             </ul>
+             </div>
+         </nav>
+         
+         <h1 style="color: white; font-family: 'Londrina Solid', cursive; text-shadow: 2px 2px 3px rgb(206, 163, 193);">So, you have ovaries? <br>Here is what you need to know.</h1>
+         <div class="cards">
+             <div class="card">
+                 <a href="info-generalperiod" style="text-decoration: none;">
+                 <div class="card stack-top">
+                     <p><b>For information on,</b></p>
+                     <ul>
+                         <li>General Period</li>
+                         <li>Period Symptoms</li>
+                         <li>Irregular Periods</li>
+                         <li>Discharge</li>
+                         <li><em>etc</em></li>
+                     </ul>
+                 </div>
+                </a>
+                 <br>
+                 <br>
+                 <h2><mark>General Period Info</mark></h2>
+             </div>
+ 
+             <div class="card">
+                <a href="info-sex" style="text-decoration: none;">
+                 <div class="card stack-top">
+                     <p><b>For information on,</b></p>
+                     <ul>
+                         <li>General Sex</li>
+                         <li>Orgasms</li>
+                         <li>Bleeding</li>
+                         <li>Toys, Masturbation & Porn</li>
+                     </ul>
+                 </div>
+                </a>
+                 <br>
+                 <br>
+                 <h2><mark>Sex</mark></h2>
+             </div>
+ 
+             <div class="card">
+                <a href="info-pregnancy" style="text-decoration: none;">
+                 <div class="card stack-top">
+                     <p><b>For information on,</b></p>
+                     <ul>
+                         <li>General Pregnancy</li>
+                         <li>Ovulation</li>
+                         <li>Fertility</li>
+                         <li>Miscarriages</li>
+                         <li><em>etc</em></li>
+                     </ul>
+                 </div>
+                 </a>
+                 <br>
+                 <br>
+                 <h2><mark>Pregnancy</mark></h2>
+             </div>
+ 
+             <div class="card">
+                <a href="info-contraceptives" style="text-decoration: none;">
+                 <div class="card stack-top">
+                     <p><b>For information on,</b></p>
+                     <ul>
+                         <li>General Contraceptive Information</li>
+                         <li>Birth Control Pill</li>
+                         <li>Morning After Pill</li>
+                         <li>IUD</li>
+                         <li>Condoms</li>
+                     </ul>
+                 </div>
+                 </a>
+                 <br>
+                 <br>
+                 <h2><mark>Contraceptives</mark></h2>
+             </div>
+ 
+             <div class="card">
+                <a href="info-mentalhealth" style="text-decoration: none;">
+                 <div class="card stack-top">
+                     <p><b>For information on,</b></p>
+                     <ul>
+                         <li>General Mental Health</li>
+                         <li>How To Manage</li>
+                     </ul>
+                 </div>
+                 </a>
+                 <br>
+                 <br>
+                 <h2><mark>Mental Health</mark></h2>
+             </div>
+ 
+             <div class="card">
+                <a href="info-menstrualproducts" style="text-decoration: none;">
+                 <div class="card stack-top">
+                     <p><b>For information on,</b></p>
+                     <ul>
+                         <li>How To Use Them</li>
+                         <li>Different Types</li>
+                         <li>Symptoms</li>
+                     </ul>
+                 </div>
+                 </a>
+                 <br>
+                 <br>
+                 <h2><mark>Menstrual Products</mark></h2>
+             </div>
+         </div>
+         
+     </body>
+ </html>

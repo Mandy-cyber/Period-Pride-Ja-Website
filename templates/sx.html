@@ -1,0 +1,295 @@
+<!-- 90% of code for hamburger icon
+* Made by Erik Terwan
+ * 24th of November 2015
+ * MIT License -->
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <title>Sex - PeriodPrideJa</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="shortcut icon" type="image/png" href="static/uterus.png"/>
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap" rel="stylesheet">
+     </head>
+     <body>
+         <style>
+             body {
+                 height: 100%;
+                 width: 100%;
+                 overflow: hidden;
+                 background: linear-gradient(-45deg, #FFEDD3, #FCD2D1, #FE8F8F, #FF5C58);
+                 background-size: 1200% 1200%;
+                 animation: gradient 15s ease infinite;
+                 text-align: center;
+                 font-family: 'Londrina Solid', cursive;
+             }
+             @-webkit-keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes gradient {
+                 0% {
+                     background-position: 0% 50%;
+                 }
+                 50% {
+                     background-position: 100% 50%;
+                 }
+                 100% {
+                     background-position: 0% 50%;
+                 }
+             }
+             @media (min-width: 600px) {
+                 .cards { grid-template-columns: repeat(2, 1fr); }
+                 h1 {font-size: 8vw}
+             }
+             @media (min-width: 900px) {
+                 .cards { grid-template-columns: repeat(3, 1fr); }
+                 h1 {font-size: 4.5vw}
+             }
+
+             .tab {
+                overflow: hidden;
+                color: black;
+                box-shadow:0 0 15px 4px rgba(255,255,255,0.6);
+                background-color: #ffffff;
+                padding: 1.5vw;
+                display: inline-block;
+            }
+
+            /* Style the buttons inside the tab */
+            .tab a {
+                background-color: inherit;
+                float: center;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 2vw 2.5vw;
+                transition: 0.3s;
+                font-size: 17px;
+                font-weight: bold;
+                font-family: 'Alegreya Sans', sans-serif;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab a:hover {
+                background-color: #ddd;
+            }
+            p, h3 {
+                font-family: 'Alegreya Sans', sans-serif;
+            }
+            h3 {
+                font-weight: bold;
+            }
+            /* Create an active/current tablink class */
+            .tab a.active {
+                background-color: #FDF6F0;
+            }
+            /* Style the tab content */
+            .tabcontent {
+                display: none;
+                float: center;
+                padding: 1vw 2vw;
+                box-shadow:0 0 15px 4px rgba(255,255,255,0.6);
+                background-color: white;
+                animation: fadeEffect 1s; /* Fading effect takes 1 second */
+                text-align: left;
+                margin: 0vw 10vw;
+                height: auto;
+            }
+            /* Go from zero to full opacity */
+            @keyframes fadeEffect {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+
+             #menuToggle{
+                 display: block;
+                 position: relative;
+                 top: 2vw;
+                 left: 2vw;
+                 z-index: 1;
+                 -webkit-user-select: none;
+                 user-select: none;
+             }
+             #menuToggle a{
+                 text-decoration: none;
+                 color: #232323;
+                 transition: color 0.3s ease;
+             }
+             #menuToggle a:hover{
+                 color:rgb(241, 218, 218);
+                 text-shadow: 1px 1px 1px white;
+                 font-weight: bold;
+             }
+             #menuToggle input{
+                 display: block;
+                 width: 40px;
+                 height: 32px;
+                 position: absolute;
+                 top: -7px;
+                 left: -5px;
+                 cursor: pointer;
+                 opacity: 0; /* hide this */
+                 z-index: 2; /* and place it over the hamburger */
+                 -webkit-touch-callout: none;
+             }
+             #menuToggle span{
+                 display: block;
+                 width: 33px;
+                 height: 4px;
+                 margin-bottom: 5px;
+                 position: relative;
+                 background: #FFFFFF;
+                 border-radius: 3px;
+                 z-index: 1;
+                 transform-origin: 4px 0px;
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             opacity 0.55s ease;
+             }
+             #menuToggle span:first-child{
+                 transform-origin: 0% 0%;
+             }
+             #menuToggle span:nth-last-child(2){
+                 transform-origin: 0% 100%;
+             }
+             #menuToggle input:checked ~ span{
+                 opacity: 1;
+                 transform: rotate(45deg) translate(-2px, -1px);
+                 background: #232323;
+             }
+             #menuToggle input:checked ~ span:nth-last-child(3){
+                 opacity: 0;
+                 transform: rotate(0deg) scale(0.2, 0.2);
+             }
+             #menuToggle input:checked ~ span:nth-last-child(2){
+                 transform: rotate(-45deg) translate(0, -1px);
+             }
+             #menu {
+                 position: absolute;
+                 width: 15vw;
+                 height: 100vh;
+                 margin: -10vw 0 0 -2.5vw;
+                 padding: 5vw;
+                 padding-top: 10vw;
+                 background-color: rgba(255, 255, 255);
+                 list-style-type: none;
+                 -webkit-font-smoothing: antialiased;
+                 transform-origin: 0% 0%;
+                 transform: translate(-100%, 0);
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+             }
+             #menu li {
+                 padding: 3vw;
+                 font-size: 2vw;
+                 opacity: 1;
+                 font-family: 'Alegreya Sans', sans-serif;
+             }
+             #menuToggle input:checked ~ ul{
+                 transform: none;
+             }
+         </style>
+ 
+ 
+         <nav role="navigation">
+             <div id="menuToggle">
+             <input type="checkbox"/>
+             <span></span>
+             <span></span>
+             <span></span>
+             <ul id="menu">
+                 <a href="/"><li><img src="static/uterus.png" style="max-width: 5vw;"></li></a>
+                 <a href="/"><li>Home</li></a>
+                 <a href="ask"><li>Ask a Question</li></a>
+                 <a href="info"><li>Information</li></a>
+                 <a href="help_out"><li>Help Out</li></a>
+             </ul>
+             </div>
+         </nav>
+
+         <h1 style="color: white; font-family: 'Londrina Solid', cursive; text-shadow: 2px 2px 3px rgb(206, 163, 193);">Sex Information</h1>
+            <div class="tab">
+                <a class="tablinks" onclick="openSubCategory(event, 'GeneralSex')" id="defaultOpen">General Sex</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'Orgasms')">Orgasms</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'ToysMastPorn')">Toys, Masturbation & Porn</a>
+            </div>
+
+            <div id="GeneralSex" class="tabcontent">
+                <h3>General Sex</h3>
+                <p>The definition of sex can mean different things to different people. Here are some examples:<p>
+                    <ul>
+                    <li>Masturbation: this is when a person stimulates (excites) their own genitals with their fingers, their hand, a sex toy, etc.</li>
+                    <li>Mutual masturbation: this is when people masturbate together/in front of each other.</li>
+                    <li>Oral sex: this is when a person’s genitals are stimulated by another person’s mouth.</li>
+                    <li>Vaginal sex: this is when a vagina is penetrated (entered) by a penis, finger, sex toy, etc.</li>
+                    <li>Anal sex: this is when an anus is penetrated by a penis, finger, sex toy, etc.</li>
+                    <li>Sexting: this is when people exchange sexual content (e.g. messages, images, videos, etc.) with each other through technology (e.g. calls, texts, apps, etc.).</li>
+                    <li>Other intimate contact: this may include things like touching, hugging, kissing or other contact of an intimate, personal nature.</li>
+                    </ul>
+                    
+              </div>
+    
+              <div id="Orgasms" class="tabcontent">
+                <h3><b>Orgasms</b></h3>
+                <p>Orgasms can be defined in different ways using different criteria. Medical professionals have used physiological changes to the body as a basis for a definition, whereas psychologists and mental health professionals have used emotional and cognitive changes. A single, overarching explanation of the orgasm does not currently exist.</p>
+<p>The stages of an orgasm </p>
+<ol>
+<li>excitement</li>
+<li>plateau</li>
+<li>orgasm</li>
+<li>Resolution</li>
+</ol>
+<p>While postcoital bleeding is often associated with infections and abnormalities of the uterus, vagina, or cervix, bleeding can also result from direct trauma to these vulnerable tissues.</p>
+<p>It may be caused by vigorous sex, which can lead to cuts, scrapes, or tears on the vagina. This is more likely to occur if there is vaginal dryness, such as can occur during menopause, when a woman is breastfeeding, or if there is excessive douching.</p>
+<p>More distressingly, bleeding can occur as a result of sexual abuse or violence. Forced entry can severely damage vaginal tissues and lead to the formation of fissures, which can repeatedly heal and reopen unless medically treated.</p>
+
+              </div>
+    
+            
+    
+              <div id="ToysMastPorn" class="tabcontent">
+                <h3><b>Toys, Masturbation & Porn</b></h3>
+                <p>Masturbation doesn’t have to lead to orgasm. But if you’re in the mood and want that endorphin rush, there are a few things you can do to help your body achieve the Big O:</p>
+<p>Set the mood. The setting can sometimes make a big difference in whether or not you’ll have a good solo session. Think about turning down the lights, lighting some candles, and listening to relaxing music to get the mood going.</p>
+<p>Add some lube. When you’re aroused, your body self-lubricates, making masturbation a much smoother and pleasurable experience. But sometimes, that may not be enough (or it may not happen at all!). So keep a tube of lube on hand to increase your pleasure. </p>
+<p>Let your mind wander. It may go without saying, but you can turn yourself on by simply thinking about that hottie you met last week. Let your mind fantasize about people or situations that send tingles down your spine.</p>
+<p>Take your time. You don’t have to rush masturbation. Play around with techniques and take your time to enjoy all of the sensations you’re feeling throughout your body.</p>
+<p>Explore erogenous zones. Playing with your erogenous zones — think your nipples, ears, or thighs — can shoot sparks of pleasure throughout your body.</p>
+<p>Give your usual sex toys a break. Vibrators and dildos are loads of fun to play with, but they’re not the only sex toys in town. Some people, for example, like to stimulate themselves by using a showerhead on their clitoris or rubbing their vulva against a pillow.</p>
+<p>Consider erotica or pornography. It’s fun to let your mind wander, but you don’t always have to use your imagination. If you want to turn up the heat, read a dirty book or watch a sexy video.</p>
+
+
+
+              </div>
+              
+              <script>
+                document.getElementById("defaultOpen").click();
+                function openSubCategory(evt, subCategoryName) {
+                  var i, tabcontent, tablinks;
+                  tabcontent = document.getElementsByClassName("tabcontent");
+                  for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                  }
+                  tablinks = document.getElementsByClassName("tablinks");
+                  for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                  }
+                  document.getElementById(subCategoryName).style.display = "block";
+                  evt.currentTarget.className += " active";
+                }
+                </script>
+         
+     </body>
+ </html>
+ 
+ 
+ 
+ 

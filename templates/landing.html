@@ -1,0 +1,128 @@
+<!-- 90% of code for hamburger icon
+* Made by Erik Terwan
+ * 24th of November 2015
+ * MIT License -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PeriodPrideJa</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="static/uterus.png"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <style>
+            body {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                background: linear-gradient(-45deg, #F9F3DF, #FFDEDE, #FFDEFA, #FFC898);
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+                /* height: 100vh; */
+                text-align: center;
+                color: white;
+                font-family: 'Londrina Solid', cursive;
+            }
+            @-webkit-keyframes mover {
+                0% { transform: translateY(0); }
+                100% { transform: translateY(-20px); }
+            }
+            @keyframes mover {
+                0% { transform: translateY(0); }
+                100% { transform: translateY(-20px); }
+            }
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+            @media (min-width: 600px) {
+                .cards { grid-template-columns: repeat(2, 1fr); }
+                img {width:60%}
+                h1 {font-size: 8vw}
+            }
+            @media (min-width: 900px) {
+                .cards { grid-template-columns: repeat(3, 1fr); }
+                img {width:55%}
+                h1 {font-size: 4.5vw;}
+            }
+            .center {
+                display: block;
+                margin: auto;
+            }
+            .card{
+                display: block;
+                margin: auto;
+                position: relative;
+            }
+            p {
+                position: absolute;
+                font-size: 5vw;
+                color: white;
+                text-shadow: 2px 2px 3px rgb(206, 163, 193);
+                z-index: auto;
+                top: 36%;
+                width: 100%;
+                text-align: center;
+            }
+            #subtitle {
+                font-size: 2vw;
+                top: 52%;
+            }
+            img, p, #coolText {
+                -webkit-animation: mover 2s infinite  alternate;
+                animation: mover 2s infinite  alternate;
+            }
+            #coolText {
+                position: absolute;
+            }
+            #coolText span{
+                display: none;
+                color: white;
+                font-family: 'ABeeZee', sans-serif;
+                font-size: 2vw;
+                text-shadow: 2px 2px 3px pink;
+                width: auto;
+                margin-top: 30%;
+                padding: 1vw;
+                font-weight: bold;
+            }
+            #coolText:hover {
+                position: absolute;
+            }
+            #coolText:hover span {
+                display: block;
+            }
+        </style>
+
+
+        <div class="cards">
+            <div id="card">
+                <img src="static/uterus.png" class="center" usemap="#sectionClicks">
+                <p>Period Pride Ja</p>
+                <p id="subtitle">Click on an ovary to get started</p>
+                <map name="sectionClicks">
+                    <a id="coolText" href="info" style="position: absolute; left: 0%; top: 22.66%; width: 35.16%; height: 35.16%; z-index: 2; text-decoration: none;">
+                        <span>Read Up On Period and Sex Education</span>
+                    </a>
+                    <a id="coolText" href="ask" style="position: absolute; left: 64.84%; top: 23.05%; width: 35.16%; height: 35.16%; z-index: 2; text-decoration: none;">
+                        <span>Ask Trixie a Question</span>
+                    </a>
+                </map>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,263 @@
+<!-- 90% of code for hamburger icon
+* Made by Erik Terwan
+ * 24th of November 2015
+ * MIT License -->
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <title>Mental Health - PeriodPrideJa</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="shortcut icon" type="image/png" href="static/uterus.png"/>
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap" rel="stylesheet">
+     </head>
+     <body>
+         <style>
+             body {
+                 height: 100%;
+                 width: 100%;
+                 overflow: hidden;
+                 background: linear-gradient(-45deg, #FFEDD3, #FCD2D1, #FE8F8F, #FF5C58);
+                 background-size: 1200% 1200%;
+                 animation: gradient 15s ease infinite;
+                 text-align: center;
+                 font-family: 'Londrina Solid', cursive;
+             }
+             @-webkit-keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes gradient {
+                 0% {
+                     background-position: 0% 50%;
+                 }
+                 50% {
+                     background-position: 100% 50%;
+                 }
+                 100% {
+                     background-position: 0% 50%;
+                 }
+             }
+             @media (min-width: 600px) {
+                 .cards { grid-template-columns: repeat(2, 1fr); }
+                 h1 {font-size: 8vw}
+             }
+             @media (min-width: 900px) {
+                 .cards { grid-template-columns: repeat(3, 1fr); }
+                 h1 {font-size: 4.5vw}
+             }
+
+             .tab {
+                overflow: hidden;
+                color: black;
+                box-shadow:0 0 15px 4px rgba(255,255,255,0.6);
+                background-color: #ffffff;
+                padding: 1.5vw;
+                display: inline-block;
+            }
+
+            /* Style the buttons inside the tab */
+            .tab a {
+                background-color: inherit;
+                float: center;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 2vw 2.5vw;
+                transition: 0.3s;
+                font-size: 17px;
+                font-weight: bold;
+                font-family: 'Alegreya Sans', sans-serif;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab a:hover {
+                background-color: #ddd;
+            }
+            p, h3 {
+                font-family: 'Alegreya Sans', sans-serif;
+            }
+            h3 {
+                font-weight: bold;
+            }
+            /* Create an active/current tablink class */
+            .tab a.active {
+                background-color: #FDF6F0;
+            }
+            /* Style the tab content */
+            .tabcontent {
+                display: none;
+                float: center;
+                padding: 1vw 2vw;
+                box-shadow:0 0 15px 4px rgba(255,255,255,0.6);
+                background-color: white;
+                animation: fadeEffect 1s; /* Fading effect takes 1 second */
+                text-align: left;
+                margin: 0vw 6.75vw;
+                height: auto;
+            }
+
+            /* Go from zero to full opacity */
+            @keyframes fadeEffect {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+
+             #menuToggle{
+                 display: block;
+                 position: relative;
+                 top: 2vw;
+                 left: 2vw;
+                 z-index: 1;
+                 -webkit-user-select: none;
+                 user-select: none;
+             }
+             #menuToggle a{
+                 text-decoration: none;
+                 color: #232323;
+                 transition: color 0.3s ease;
+             }
+             #menuToggle a:hover{
+                 color:rgb(241, 218, 218);
+                 text-shadow: 1px 1px 1px white;
+                 font-weight: bold;
+             }
+             #menuToggle input{
+                 display: block;
+                 width: 40px;
+                 height: 32px;
+                 position: absolute;
+                 top: -7px;
+                 left: -5px;
+                 cursor: pointer;
+                 opacity: 0; /* hide this */
+                 z-index: 2; /* and place it over the hamburger */
+                 -webkit-touch-callout: none;
+             }
+             #menuToggle span{
+                 display: block;
+                 width: 33px;
+                 height: 4px;
+                 margin-bottom: 5px;
+                 position: relative;
+                 background: #FFFFFF;
+                 border-radius: 3px;
+                 z-index: 1;
+                 transform-origin: 4px 0px;
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             opacity 0.55s ease;
+             }
+             #menuToggle span:first-child{
+                 transform-origin: 0% 0%;
+             }
+             #menuToggle span:nth-last-child(2){
+                 transform-origin: 0% 100%;
+             }
+             #menuToggle input:checked ~ span{
+                 opacity: 1;
+                 transform: rotate(45deg) translate(-2px, -1px);
+                 background: #232323;
+             }
+             #menuToggle input:checked ~ span:nth-last-child(3){
+                 opacity: 0;
+                 transform: rotate(0deg) scale(0.2, 0.2);
+             }
+             #menuToggle input:checked ~ span:nth-last-child(2){
+                 transform: rotate(-45deg) translate(0, -1px);
+             }
+             #menu {
+                 position: absolute;
+                 width: 15vw;
+                 height: 100vh;
+                 margin: -10vw 0 0 -2.5vw;
+                 padding: 5vw;
+                 padding-top: 10vw;
+                 background-color: rgba(255, 255, 255);
+                 list-style-type: none;
+                 -webkit-font-smoothing: antialiased;
+                 transform-origin: 0% 0%;
+                 transform: translate(-100%, 0);
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+             }
+             #menu li {
+                 padding: 3vw;
+                 font-size: 2vw;
+                 opacity: 1;
+                 font-family: 'Alegreya Sans', sans-serif;
+             }
+             #menuToggle input:checked ~ ul{
+                 transform: none;
+             }
+         </style>
+ 
+ 
+         <nav role="navigation">
+             <div id="menuToggle">
+             <input type="checkbox"/>
+             <span></span>
+             <span></span>
+             <span></span>
+             <ul id="menu">
+                 <a href="/"><li><img src="static/uterus.png" style="max-width: 5vw;"></li></a>
+                 <a href="/"><li>Home</li></a>
+                 <a href="ask"><li>Ask a Question</li></a>
+                 <a href="info"><li>Information</li></a>
+                 <a href="help_out"><li>Help Out</li></a>
+             </ul>
+             </div>
+         </nav>
+
+         <h1 style="color: white; font-family: 'Londrina Solid', cursive; text-shadow: 2px 2px 3px rgb(206, 163, 193);">Mental Health Information</h1>
+            <div class="tab">
+                <a class="tablinks" onclick="openSubCategory(event, 'GeneralMentalHealth')" id="defaultOpen">General Mental Health Information</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'HowToManage')">How To Manage</a>
+            </div>
+
+            <div id="GeneralMentalHealth" class="tabcontent">
+                <h3>General Mental Health Information</h3>
+                <p>During your period you may experience symptoms that negatively impact your mental health. Feelings of sadness, anxiety, loneliness,and irritability are all normal. 
+                    You may suddenly feel ‘out of the ordinary’,overwhelmed or annoyed by everyone. It is important to take some space for yourself to avoid hurting others or yourself. </p>
+              </div>
+    
+              <div id="HowToManage" class="tabcontent">
+                <h3>How To Manage</h3>
+                
+                <p>There are some simple ways to cope like meditating, watching your favourite shows or movies, and generally taking care of your body.
+                     Getting enough sleep at night, eating properly and exercising regularly can do wonders for your mental health.If you start to experience 
+                     extreme symptoms of depression, panic attacks, or even suicidal thoughts it may be appropriate to talk to a trusted friend, adult or a professional counselor. 
+                     You may need to be diagnosed with an illness like clinical depression. This may allow you to get the needed medication to cope.</p>
+
+              </div>
+              
+              <script>
+                document.getElementById("defaultOpen").click();
+                function openSubCategory(evt, subCategoryName) {
+                  var i, tabcontent, tablinks;
+                  tabcontent = document.getElementsByClassName("tabcontent");
+                  for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                  }
+                  tablinks = document.getElementsByClassName("tablinks");
+                  for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                  }
+                  document.getElementById(subCategoryName).style.display = "block";
+                  evt.currentTarget.className += " active";
+                }
+                </script>
+         
+     </body>
+ </html>
+ 
+ 
+ 
+ 

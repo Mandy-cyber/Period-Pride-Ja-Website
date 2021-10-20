@@ -1,0 +1,359 @@
+<!-- 90% of code for hamburger icon
+* Made by Erik Terwan
+ * 24th of November 2015
+ * MIT License -->
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <title>Contraceptives - PeriodPrideJa</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="shortcut icon" type="image/png" href="static/uterus.png"/>
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&display=swap" rel="stylesheet">
+     </head>
+     <body>
+         <style>
+             body {
+                 height: 100%;
+                 width: 100%;
+                 overflow: hidden;
+                 background: linear-gradient(-45deg, #FFEDD3, #FCD2D1, #FE8F8F, #FF5C58);
+                 background-size: 1200% 1200%;
+                 animation: gradient 15s ease infinite;
+                 text-align: center;
+                 font-family: 'Londrina Solid', cursive;
+             }
+             @-webkit-keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes mover {
+                 0% { transform: translateY(0); }
+                 100% { transform: translateY(-20px); }
+             }
+             @keyframes gradient {
+                 0% {
+                     background-position: 0% 50%;
+                 }
+                 50% {
+                     background-position: 100% 50%;
+                 }
+                 100% {
+                     background-position: 0% 50%;
+                 }
+             }
+             @media (min-width: 600px) {
+                 .cards { grid-template-columns: repeat(2, 1fr); }
+                 h1 {font-size: 8vw}
+             }
+             @media (min-width: 900px) {
+                 .cards { grid-template-columns: repeat(3, 1fr); }
+                 h1 {font-size: 4.5vw}
+             }
+
+             .tab {
+                overflow: hidden;
+                color: black;
+                box-shadow:0 0 15px 4px rgba(255,255,255,0.6);
+                background-color: #ffffff;
+                padding: 1.5vw;
+                display: inline-block;
+            }
+
+            /* Style the buttons inside the tab */
+            .tab a {
+                background-color: inherit;
+                float: center;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 2vw 2.5vw;
+                transition: 0.3s;
+                font-size: 17px;
+                font-weight: bold;
+                font-family: 'Alegreya Sans', sans-serif;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab a:hover {
+                background-color: #ddd;
+            }
+            p, h3 {
+                font-family: 'Alegreya Sans', sans-serif;
+            }
+            h3 {
+                font-weight: bold;
+            }
+            /* Create an active/current tablink class */
+            .tab a.active {
+                background-color: #FDF6F0;
+            }
+            /* Style the tab content */
+            .tabcontent {
+                display: none;
+                float: center;
+                padding: 1vw 2vw;
+                box-shadow:0 0 15px 4px rgba(255,255,255,0.6);
+                background-color: white;
+                animation: fadeEffect 1s; /* Fading effect takes 1 second */
+                text-align: left;
+                margin: 0vw 6.75vw;
+                height: auto;
+            }
+
+            /* Go from zero to full opacity */
+            @keyframes fadeEffect {
+                from {opacity: 0;}
+                to {opacity: 1;}
+            }
+
+             #menuToggle{
+                 display: block;
+                 position: relative;
+                 top: 2vw;
+                 left: 2vw;
+                 z-index: 1;
+                 -webkit-user-select: none;
+                 user-select: none;
+             }
+             #menuToggle a{
+                 text-decoration: none;
+                 color: #232323;
+                 transition: color 0.3s ease;
+             }
+             #menuToggle a:hover{
+                 color:rgb(241, 218, 218);
+                 text-shadow: 1px 1px 1px white;
+                 font-weight: bold;
+             }
+             #menuToggle input{
+                 display: block;
+                 width: 40px;
+                 height: 32px;
+                 position: absolute;
+                 top: -7px;
+                 left: -5px;
+                 cursor: pointer;
+                 opacity: 0; /* hide this */
+                 z-index: 2; /* and place it over the hamburger */
+                 -webkit-touch-callout: none;
+             }
+             #menuToggle span{
+                 display: block;
+                 width: 33px;
+                 height: 4px;
+                 margin-bottom: 5px;
+                 position: relative;
+                 background: #FFFFFF;
+                 border-radius: 3px;
+                 z-index: 1;
+                 transform-origin: 4px 0px;
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                             opacity 0.55s ease;
+             }
+             #menuToggle span:first-child{
+                 transform-origin: 0% 0%;
+             }
+             #menuToggle span:nth-last-child(2){
+                 transform-origin: 0% 100%;
+             }
+             #menuToggle input:checked ~ span{
+                 opacity: 1;
+                 transform: rotate(45deg) translate(-2px, -1px);
+                 background: #232323;
+             }
+             #menuToggle input:checked ~ span:nth-last-child(3){
+                 opacity: 0;
+                 transform: rotate(0deg) scale(0.2, 0.2);
+             }
+             #menuToggle input:checked ~ span:nth-last-child(2){
+                 transform: rotate(-45deg) translate(0, -1px);
+             }
+             #menu {
+                 position: absolute;
+                 width: 15vw;
+                 height: 100vh;
+                 margin: -10vw 0 0 -2.5vw;
+                 padding: 5vw;
+                 padding-top: 10vw;
+                 background-color: rgba(255, 255, 255);
+                 list-style-type: none;
+                 -webkit-font-smoothing: antialiased;
+                 transform-origin: 0% 0%;
+                 transform: translate(-100%, 0);
+                 transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+             }
+             #menu li {
+                 padding: 3vw;
+                 font-size: 2vw;
+                 opacity: 1;
+                 font-family: 'Alegreya Sans', sans-serif;
+             }
+             #menuToggle input:checked ~ ul{
+                 transform: none;
+             }
+         </style>
+ 
+ 
+         <nav role="navigation">
+             <div id="menuToggle">
+             <input type="checkbox"/>
+             <span></span>
+             <span></span>
+             <span></span>
+             <ul id="menu">
+                 <a href="/"><li><img src="static/uterus.png" style="max-width: 5vw;"></li></a>
+                 <a href="/"><li>Home</li></a>
+                 <a href="ask"><li>Ask a Question</li></a>
+                 <a href="info"><li>Information</li></a>
+                 <a href="help_out"><li>Help Out</li></a>
+             </ul>
+             </div>
+         </nav>
+
+         <h1 style="color: white; font-family: 'Londrina Solid', cursive; text-shadow: 2px 2px 3px rgb(206, 163, 193);">Contraceptives Information</h1>
+            <div class="tab">
+                <a class="tablinks" onclick="openSubCategory(event, 'GeneralContraceptive')" id="defaultOpen">General Contraceptive Information</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'BirthControlPill')">Birth Control Pill</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'MorningAfterPill')">Morning After Pill</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'Condoms')">Condoms</a>
+                <a class="tablinks" onclick="openSubCategory(event, 'IUD')">IUD</a>
+            </div>
+
+            <div id="GeneralContraceptive" class="tabcontent">
+                <h3><b>General Contraceptive Information</b></h3>
+                
+                <p>Effectiveness </p>
+                <ul>
+
+                <li>Most contraceptive products are effective at reducing the chance of pregnancy. However human error can lead to a reduction in effectiveness.</li>
+                <li>The most effective methods for contraception are the more permanent methods such as implants or IUD’s at 99 percent effectiveness</li>
+                <li>Pills and injections are also effective. Barrier methods like condoms are slightly less effective but are still good tools to prevent pregnancy</li>
+                <li>Finally Spermicide and withdrawal are far less effective and should be avoided</li>
+                </ul>
+
+                <p>Types</p>
+
+            <ol>
+                <li>Caps - The contraceptive cap is a circular dome made of thin, soft silicone. It's inserted into the vagina before sex, and covers the cervix so that sperm cannot get into the womb. You need to use spermicide with it (spermicide kills sperm).</li>
+                <li>The Pill - The combined oral contraceptive pill is usually just called "the pill". It contains synthetic female hormones, oestrogen and progesterone. These hormones are produced naturally in a woman's ovaries.The hormones in the pill prevent a woman's ovaries from releasing an egg (ovulating). They also make it difficult for sperm to reach an egg, or for an egg to implant itself in the lining of the womb.</li>
+                <li>Condom - Male condoms are made from very thin latex (rubber), polyisoprene or polyurethane, and are designed to stop a man's semen from coming into contact with his sexual partner.</li>
+                <li>Contraceptive implant - The implant stops the release of an egg from the ovary by slowly releasing progestogen into your body. Progestogen also thickens the cervical mucus and thins the womb lining. This makes it harder for sperm to move through your cervix, and less likely for your womb to accept a fertilised egg.</li>
+                <li>Contraceptive injection - The contraceptive injection (Depo-Provera, Sayana Press or Noristerat) releases the hormone progestogen into your bloodstream to prevent pregnancy.</li>
+                <li>IUD - The IUD works by stopping the sperm and egg from surviving in the womb or fallopian tubes. It may also prevent a fertilised egg from implanting in the womb.</li>
+            </ol>
+                <p>The best method of birth control for you is one that is safe, that you are comfortable using, and that you are able to use consistently and correctly. Your preferred method of birth control may change over your lifetime and is influenced by many different factors, including:</p>
+            <ul>
+                <li>Your age and health history</li>
+                <li>Your reproductive goals, such as the number of children you want and how soon you want to get pregnant</li>
+                <li>Relationship factors, including marital status, number of sexual partners, how often you have sex and partner preferences</li>
+                <li>Religious beliefs</li>
+                <li>Differences between birth control methods, including how effective they are at preventing pregnancy, side effects, cost and whether they prevent sexually transmitted infections></li>
+            </ul>
+            <p>Knowing your options is definitely part of the decision process — but an honest assessment of yourself and your relationships is just as important when deciding which type of birth control is right for you. </p>
+
+              </div>
+    
+              <div id="BirthControlPill" class="tabcontent">
+                <h3><b>Birth Control Pill</b></h3>
+                <p>When to take:</p>
+                <p>Ask your doctor when you should start birth control pills. If you’re still having your period on the day you’ve been told to start your pill pack, start it anyway. You’ll get your next period about 25 days after starting the pill pack. It's best to take the pills at the same time every day. You can take them at any time during the day, but taking it either before breakfast or at bedtime will help make it easier to remember. Extended-cycle pills work in a similar way. You start taking the pill the first Sunday after your period starts. If your period starts on a Sunday, start it that day. You take one active tablet a day for 84 consecutive days. Then, depending on the type of pill you're taking, you have 7 days of taking one placebo or estrogen-only pill per day.</p>
+                <ul>
+                <li>Birth control for endometriosis</li>
+                <ul>
+                <li>Combined hormonal contraceptives, also known as combined hormonal therapy, use estrogen and progestin. They’re the first-line birth control treatment for endometriosis.This treatment thins the uterine lining, which can ease endometriosis pain. It’s available as:</li>
+                <ul>
+                <li>pill</li>
+                <li>vaginal ring</li>
+                <li>skin patch</li>
+                </ul>
+                </ul>
+                <li> Due to the estrogen in combined hormonal contraceptives, this option is not recommended if you have heart disease or a high risk of blood clots. In this case, your doctor may advise you to take progestin-only birth control. That said, not all progestin contraceptives are safe to take with a history of clotting. Read the label carefully before purchasing and using it. </li>
+                </ul>
+                <p>The Period on birth control pill </p>
+                <p>Your period on the pill is technically called withdrawal bleeding, referring to the withdrawal of  hormones in your pill, and in your body. The drop in hormone levels causes the lining of your uterus to shed. This bleeding may be slightly different than the period you had before taking the pill. It also may change over time while taking the pill.</p>
+                <p>Side effects aren’t always a bad thing — many people use the pill because some of the side effects can be really helpful. For example, the hormones in the pill can help with painful, heavy, or irregular periods. The pill may ease cramps and PMS, and it will usually make your period lighter and more regular. You can even use the combination pill to safely skip your period. </p>
+                <p>The changes in your periods while on the pill can sometimes make people worry about being pregnant. But the chance of pregnancy is very low as long as you’re taking your pill every day. If you’re worried, you can always take a pregnancy test to be sure.</p>
+                <p>Some types of birth control pills can also help prevent acne, iron deficiency (anemia), bone thinning, cysts in your breasts and ovaries, and certain cancers.</p>
+            </ul>
+                
+              </div>
+    
+              <div id="MorningAfterPill" class="tabcontent">
+                <h3><b>Morning After Pill</b></h3>
+                <p>A common morning after pill is Plan B. Plan B is a progesterone drug that contains the hormone levonorgestrel. Levonorgestrel prevents pregnancy in different ways, depending on where you are in your menstrual cycle. It can temporarily stop the release of an egg from an ovary or prevent a fertilized egg from attaching to the uterus. Plan B works if taken within 72 hours after a regular birth control method fails or within 72 hours after unprotected intercourse. </p>  
+<p>Once absorbed into the bloodstream, which usually takes a couple of hours, levonorgestrel starts to affect the ovaries or uterine lining. Although it’s rare, some women may throw up within two hours of taking a Plan B pill. If this happens to you, it’s best to follow up with your healthcare provider and ask whether or not you should take a second dose.  </p>
+<p>You can take Plan B at any time during your cycle, but it’s only meant to be used as an emergency contraceptive pill. Because taking an emergency contraceptive affects your hormones and fights your body’s natural functions, it can often cause side effects. Here are some of the most common side effects that women experience:</p>   
+<ul>
+<li>Nausea</li>
+<li>Lower abdominal pain</li>
+<li>Breast tenderness</li> 
+<li>Fatigue</li>
+<li>Spotting/changes in menstrual bleeding</li>
+<li>Dizziness</li>
+<li>Headache </li>
+</ul>
+
+              </div>
+    
+              <div id="Condoms" class="tabcontent">
+                <h3><b>Condoms</b></h3>
+                <p>A condom is a thin, fitted tube worn over the penis during sex (male condoms) or inserted into the vagina before sex (female condoms). Condoms can help prevent pregnancies and STDs. They create a barrier that keeps semen and other body fluids out of the vagina, rectum, or mouth. You might hear a condom called a rubber or the barrier method.</p>
+<p>Don’t use male and female condoms at the same time. One can stick to the other and pull it out of place or tear it.</p>
+<p>Condoms and dental dams can be used to protect all parties involved in oral sex. Condoms should be placed completely covering the penis. Condoms need to be thrown away after each use and changed between having oral sex and penetrative sex.</p>
+
+              </div>
+
+              <div id="IUD" class="tabcontent">
+                <h3><b>IUD</b></h3>
+                <p>An intrauterine device (IUD) is a small contraceptive device that is put into the uterus (womb) to prevent pregnancy. The 2 types available in Australia are the copper IUD and the hormonal IUD (MirenaTM). The copper IUD is designed to stay in place for up to 10 years and the hormonal IUD (Mirena) for 5 years. Both can easily be removed sooner, if needed.</p>
+<p>An IUD is a tiny device that's put into your uterus to prevent pregnancy. It’s long-term, reversible, and one of the most effective birth control methods out there</p>
+<p>Before inserting an IUD, a doctor should make sure that the individual is aware of the potential side effects and risks, including the known side effects of particular brands.</p>
+<p>Common IUD side effects include:</p>
+<ul>
+<li>irregular bleeding for several months</li>
+<li>lighter or shorter periods or no periods at all</li>
+<li>symptoms of premenstrual syndrome (PMS), which include headaches, nausea, breast tenderness, and skin blemishes</li>
+</ul>
+<p>Rarer side effects of IUDs include:</p>
+<ul>
+<li>Expulsion, which is when the device comes out of the uterus by accident. If the IUD falls out of place, a doctor will have to re-implant it. </li>
+<li>Uterine perforation, where the IUD punctures the uterine wall. This can cause severe bleeding and result in infection.</li>
+<li>Pelvic inflammatory disease (PID), which may occur if the IUD insertion procedure introduces bacteria into the uterus.</li>
+
+</ul>
+<p>The FDA has approved five IUD brands to date. One is a copper IUD called Paragard. The others are hormonal IUDs known as Kyleena, Liletta, Mirena, and Skyla. The side effects of each IUD type are listed below. </p>
+<p>An intrauterine device (IUD) should prevent pregnancy for 3 to 10 years, depending on the type you have. Once it expires, your doctor will need to take it out. You can have the IUD removed before the expiration date if you want to get pregnant.</p>
+<p>IUD removal is a quick procedure that's done in your doctor's office or a clinic. (Don’t try to remove it yourself.)</p>
+
+
+              </div>
+              
+              <script>
+                document.getElementById("defaultOpen").click();
+                function openSubCategory(evt, subCategoryName) {
+                  var i, tabcontent, tablinks;
+                  tabcontent = document.getElementsByClassName("tabcontent");
+                  for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                  }
+                  tablinks = document.getElementsByClassName("tablinks");
+                  for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                  }
+                  document.getElementById(subCategoryName).style.display = "block";
+                  evt.currentTarget.className += " active";
+                }
+                </script>
+         
+     </body>
+ </html>
+ 
+ 
+ 
+ 
